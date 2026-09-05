@@ -9,9 +9,11 @@ import com.exam.asc.domain.model.Pedido;
 import com.exam.asc.domain.model.PedidoConItems;
 import com.exam.asc.domain.service.PedidoItemConciliador;
 import com.exam.asc.domain.service.ToleranciaTextoService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BuscarPedidosService implements BuscarPedidosUseCase {
     private final PedidosApiPort pedidosApiPort;
     private final ItemsApiPort itemsApiPort;

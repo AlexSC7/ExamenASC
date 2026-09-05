@@ -9,6 +9,4 @@ public record PedidoConItems(
         String fechaEstimadaEntrega,
         String storeName,
         List<Item> items
-) {
-
-}
+) { }

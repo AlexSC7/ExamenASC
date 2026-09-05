@@ -9,7 +9,7 @@ public record Cliente(
         String apellidoMaterno,
         String correoElectronico,
         String direccion,
-        List<Pedido> ordenes
+        List<PedidoConItems> ordenes
 ) {
 
     public Cliente {

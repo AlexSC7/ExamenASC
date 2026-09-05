@@ -5,11 +5,13 @@ import com.exam.asc.domain.model.Item;
 import com.exam.asc.infrastructure.adapter.out.http.item.dto.ItemApiResponse;
 import com.exam.asc.infrastructure.adapter.out.http.item.exception.ItemsApiNoDisponibleException;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
+@Component
 public class ItemsApiAdapter implements ItemsApiPort {
 
     private final RestClient itemsRestClient;

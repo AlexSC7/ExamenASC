@@ -19,11 +19,7 @@ public class PedidoTest {
                         "online",
                         "10/10/2026",
                         "Liv",
-                        List.of(new Item(
-                                "id",
-                                1,
-                                "pantalon"
-                        ))));
+                        List.of("id")));
     }
 
     @Test
@@ -35,10 +31,6 @@ public class PedidoTest {
                 "online",
                 "10/10/2026",
                 "Liv",
-                List.of(new Item(
-                        "id",
-                        1,
-                        "pantalon"
-                ))));
+                List.of("id")));
     }
 }

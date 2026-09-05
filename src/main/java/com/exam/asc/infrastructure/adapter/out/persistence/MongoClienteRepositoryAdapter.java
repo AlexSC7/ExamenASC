@@ -4,9 +4,11 @@ import com.exam.asc.application.port.out.ClienteRepositoryPort;
 import com.exam.asc.domain.model.Cliente;
 import com.exam.asc.infrastructure.adapter.out.persistence.mapper.ClienteDocumentMapper;
 import com.exam.asc.infrastructure.adapter.out.persistence.repository.ClienteMongoRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class MongoClienteRepositoryAdapter implements ClienteRepositoryPort {
 
     private final ClienteMongoRepository mongoRepository;

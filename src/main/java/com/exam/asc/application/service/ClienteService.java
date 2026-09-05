@@ -5,6 +5,7 @@ import com.exam.asc.application.port.in.ConsultarClienteUseCase;
 import com.exam.asc.application.port.in.RegistrarClienteUseCase;
 import com.exam.asc.application.port.in.SincronizarPedidosClienteUseCase;
 import com.exam.asc.application.port.out.ClienteRepositoryPort;
+import com.exam.asc.domain.exception.ClienteNoEncontradoException;
 import com.exam.asc.domain.model.Cliente;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,10 @@ public class ClienteService implements ActualizarClienteUseCase, ConsultarClient
 
     @Override
     public Cliente actualizarCliente(Cliente cliente) {
+        //Valida si existe antes de actualizar
+        clienteRepository.buscarPorId(cliente.userId())
+                .orElseThrow(() -> new ClienteNoEncontradoException("No se encontró el cliente con ID: " + cliente.userId()));
+
         Cliente actualizado = clienteRepository.actualizar(cliente);
         sincronizarPedidos.sincronizar(cliente.userId());
         return actualizado;

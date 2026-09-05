@@ -21,7 +21,7 @@ public class ClienteTest {
                         "Lopez",
                         "correo@correo",
                         "calle",
-                        List.of(new Pedido(
+                        List.of(new PedidoConItems(
                                 "id",
                                 "id",
                                 "online",
@@ -45,7 +45,7 @@ public class ClienteTest {
                         "Lopez",
                         "correo@correo",
                         "calle",
-                        List.of(new Pedido(
+                        List.of(new PedidoConItems(
                                 "id",
                                 "id",
                                 "online",

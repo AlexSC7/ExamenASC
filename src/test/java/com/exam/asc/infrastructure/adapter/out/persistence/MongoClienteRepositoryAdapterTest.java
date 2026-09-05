@@ -3,6 +3,7 @@ package com.exam.asc.infrastructure.adapter.out.persistence;
 import com.exam.asc.domain.model.Cliente;
 import com.exam.asc.domain.model.Item;
 import com.exam.asc.domain.model.Pedido;
+import com.exam.asc.domain.model.PedidoConItems;
 import com.exam.asc.infrastructure.adapter.out.persistence.document.ClienteDocument;
 import com.exam.asc.infrastructure.adapter.out.persistence.mapper.ClienteDocumentMapper;
 import com.exam.asc.infrastructure.adapter.out.persistence.repository.ClienteMongoRepository;
@@ -30,7 +31,7 @@ public class MongoClienteRepositoryAdapterTest {
                 "Lopez",
                 "correo@correo",
                 "calle",
-                List.of(new Pedido(
+                List.of(new PedidoConItems(
                         "id",
                         "id",
                         "online",
@@ -63,7 +64,7 @@ public class MongoClienteRepositoryAdapterTest {
                 "Lopez",
                 "correo@correo",
                 "calle",
-                List.of(new Pedido(
+                List.of(new PedidoConItems(
                         "id",
                         "id",
                         "online",
@@ -95,7 +96,7 @@ public class MongoClienteRepositoryAdapterTest {
                 "Lopez",
                 "correo@correo",
                 "calle",
-                List.of(new Pedido(
+                List.of(new PedidoConItems(
                         "id",
                         "id",
                         "online",
