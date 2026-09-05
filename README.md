@@ -76,6 +76,11 @@ response
 
 Para despues hacer la union de pedidos e items en una clase conciliadora en Domain 
 
+## Validación de estilo
+Este proyecto usa Checkstyle con un set de reglas propio (checkstyle.xml).
+Ver reporte html: mvn checkstyle:checkstyle
+Validar (falla si hay violaciones): mvn verify
+
 Consultar contrato al correr aplicacion
 http://localhost:8080/swagger-ui/index.html
   
