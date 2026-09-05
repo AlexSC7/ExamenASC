@@ -58,6 +58,11 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.12.0</version> <!-- o la versión más reciente disponible -->
+		</dependency>
 	</dependencies>
 
 	<build>

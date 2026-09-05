@@ -9,6 +9,7 @@ import com.exam.asc.domain.model.Pedido;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,8 +27,8 @@ public class SincronizarPedidosClienteServiceTest {
 
         when(pedidosApiMock.obtenerPedidos())
                 .thenReturn(List.of(new Pedido(
-                        "",
                         "id",
+                        "user-123",
                         "online",
                         "10/10/2026",
                         "Liv",
@@ -47,8 +48,8 @@ public class SincronizarPedidosClienteServiceTest {
 
         verify(clienteRepoMock).actualizar(argThat(cliente ->
                 cliente.ordenes().contains(new Pedido(
-                        "",
                         "id",
+                        "user-123",
                         "online",
                         "10/10/2026",
                         "Liv",
@@ -71,17 +72,20 @@ public class SincronizarPedidosClienteServiceTest {
                 "Lopez",
                 "correo@correo",
                 "calle",
-                List.of(new Pedido(
-                        "id",
-                        "id",
-                        "online",
-                        "10/10/2026",
-                        "Liv",
-                        List.of(new Item(
+                new ArrayList<>(List.of(
+                        new Pedido(
                                 "id",
-                                1,
-                                "pantalon"
-                        ))
-                )));
+                                "id",
+                                "online",
+                                "10/10/2026",
+                                "Liv",
+                                List.of(new Item(
+                                        "id",
+                                        1,
+                                        "pantalon"
+                                ))
+                        )
+                ))
+        );
     }
 }
