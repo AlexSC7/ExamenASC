@@ -1,5 +1,7 @@
 package com.exam.asc.application.port.in;
 
+import com.exam.asc.domain.model.Cliente;
+
 public interface SincronizarPedidosClienteUseCase {
-    void sincronizar(String orderRef);
+    Cliente sincronizar(String orderRef);
 }

@@ -30,8 +30,7 @@ public class ClienteService implements ActualizarClienteUseCase, ConsultarClient
                 .orElseThrow(() -> new ClienteNoEncontradoException("No se encontró el cliente con ID: " + cliente.userId()));
 
         Cliente actualizado = clienteRepository.actualizar(cliente);
-        sincronizarPedidos.sincronizar(cliente.userId());
-        return actualizado;
+        return sincronizarPedidos.sincronizar(actualizado.userId());
     }
 
     @Override
@@ -42,7 +41,6 @@ public class ClienteService implements ActualizarClienteUseCase, ConsultarClient
     @Override
     public Cliente crearCliente(Cliente cliente) {
         Cliente guardado = clienteRepository.guardar(cliente);
-        sincronizarPedidos.sincronizar(guardado.userId());
-        return guardado;
+        return sincronizarPedidos.sincronizar(guardado.userId());
     }
 }

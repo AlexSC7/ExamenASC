@@ -4,6 +4,7 @@ import com.exam.asc.application.port.in.ActualizarClienteUseCase;
 import com.exam.asc.application.port.in.ConsultarClienteUseCase;
 import com.exam.asc.application.port.in.RegistrarClienteUseCase;
 import com.exam.asc.domain.model.Cliente;
+import com.exam.asc.infrastructure.adapter.in.http.dto.ClienteRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,6 +14,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/clientes")
@@ -39,8 +42,16 @@ public class ClienteController {
                     @ApiResponse(responseCode = "201", description = "Cliente creado exitosamente")
             }
     )
-    public ResponseEntity<Cliente> crearCliente(@RequestBody Cliente cliente) {
-        Cliente clienteGuardado = registrarClienteUseCase.crearCliente(cliente);
+    public ResponseEntity<Cliente> crearCliente(@RequestBody ClienteRequest request) {
+        Cliente clienteGuardado = registrarClienteUseCase.crearCliente(new Cliente(
+                request.userId(),
+                request.nombre(),
+                request.apellidoPaterno(),
+                request.apellidoMaterno(),
+                request.correoElectronico(),
+                request.direccion(),
+                List.of()
+        ));
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteGuardado);
     }
 
@@ -71,13 +82,21 @@ public class ClienteController {
     )
     public ResponseEntity<Cliente> actualizarCliente(
             @Parameter(description = "ID único del cliente") @PathVariable("id") String id,
-            @RequestBody Cliente cliente) {
+            @RequestBody ClienteRequest request) {
 
-        if (!id.equals(cliente.userId())) {
+        if (!id.equals(request.userId())) {
             return ResponseEntity.badRequest().build();
         }
 
-        Cliente clienteActualizado = actualizarClienteUseCase.actualizarCliente(cliente);
+        Cliente clienteActualizado = actualizarClienteUseCase.actualizarCliente(new Cliente(
+                request.userId(),
+                request.nombre(),
+                request.apellidoPaterno(),
+                request.apellidoMaterno(),
+                request.correoElectronico(),
+                request.direccion(),
+                List.of()
+        ));
         return ResponseEntity.ok(clienteActualizado);
     }
 }

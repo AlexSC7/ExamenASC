@@ -1,5 +1,6 @@
 package com.exam.asc.domain.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public record Cliente(
@@ -16,5 +17,17 @@ public record Cliente(
         if(userId == null || userId.isBlank()) {
             throw new IllegalArgumentException("userId no puede ser nulo o vacío");
         }
+    }
+
+    public Cliente conOrdenes(List<PedidoConItems> nuevasOrdenes) {
+        return new Cliente(
+                userId,
+                nombre,
+                apellidoPaterno,
+                apellidoMaterno,
+                correoElectronico,
+                direccion,
+                nuevasOrdenes
+        );
     }
 }

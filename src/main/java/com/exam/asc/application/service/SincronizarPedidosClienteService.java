@@ -5,6 +5,7 @@ import com.exam.asc.application.port.in.CriteriosBusqueda;
 import com.exam.asc.application.port.in.SincronizarPedidosClienteUseCase;
 import com.exam.asc.application.port.out.ClienteRepositoryPort;
 import com.exam.asc.application.port.out.exception.ApiExternaNoDisponibleException;
+import com.exam.asc.domain.model.Cliente;
 import com.exam.asc.domain.model.PedidoConItems;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class SincronizarPedidosClienteService implements SincronizarPedidosClien
         this.clienteRepository = clienteRepository;
     }
 
-    public void sincronizar(String userId) {
+    public Cliente sincronizar(String userId) {
         List<PedidoConItems> pedidos;
         try{
             pedidos = buscarPedidos.buscarPedidosFiltrados(
@@ -35,13 +36,14 @@ public class SincronizarPedidosClienteService implements SincronizarPedidosClien
 
         } catch (ApiExternaNoDisponibleException ex) {
             log.warn("No se pudo sincronizar pedidos del cliente {}: {}", userId, ex.getMessage());
-            return;
+            return null;
         }
 
-        clienteRepository.buscarPorId(userId).ifPresent(c -> {
-            c.ordenes().clear();
-            c.ordenes().addAll(pedidos);
-            clienteRepository.actualizar(c);
-        });
+        return clienteRepository.buscarPorId(userId)
+                .map(cliente -> {
+                    Cliente actualizado = cliente.conOrdenes(pedidos);
+                    return clienteRepository.actualizar(actualizado);
+                })
+                .orElse(null);
     }
 }
