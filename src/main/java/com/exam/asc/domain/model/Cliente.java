@@ -1,6 +1,5 @@
 package com.exam.asc.domain.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public record Cliente(

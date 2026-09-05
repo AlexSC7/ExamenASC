@@ -34,7 +34,8 @@ public class PedidoController {
             description = "Retorna una lista de pedidos con sus items aplicando filtros opcionales de búsqueda.",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Búsqueda exitosa"),
-                    @ApiResponse(responseCode = "500", description = "Error interno del servidor", content = @Content(schema = @Schema(hidden = true)))
+                    @ApiResponse(responseCode = "500", description = "Error interno del servidor",
+                            content = @Content(schema = @Schema(hidden = true)))
             }
     )
     public ResponseEntity<List<PedidoConItems>> buscarPedidos(
