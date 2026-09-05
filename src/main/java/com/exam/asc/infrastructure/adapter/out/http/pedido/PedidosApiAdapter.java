@@ -1,9 +1,9 @@
 package com.exam.asc.infrastructure.adapter.out.http.pedido;
 
 import com.exam.asc.application.port.out.PedidosApiPort;
+import com.exam.asc.application.port.out.exception.PedidosApiNoDisponibleException;
 import com.exam.asc.domain.model.Pedido;
 import com.exam.asc.infrastructure.adapter.out.http.pedido.dto.PedidoApiResponse;
-import com.exam.asc.infrastructure.adapter.out.http.pedido.exception.PedidosApiNoDisponibleException;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;

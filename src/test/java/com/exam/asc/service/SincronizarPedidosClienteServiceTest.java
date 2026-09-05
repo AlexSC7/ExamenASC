@@ -4,6 +4,7 @@ import com.exam.asc.application.port.in.BuscarPedidosUseCase;
 import com.exam.asc.application.port.in.CriteriosBusqueda;
 import com.exam.asc.application.port.out.ClienteRepositoryPort;
 import com.exam.asc.application.port.out.PedidosApiPort;
+import com.exam.asc.application.port.out.exception.PedidosApiNoDisponibleException;
 import com.exam.asc.application.service.SincronizarPedidosClienteService;
 import com.exam.asc.domain.model.Cliente;
 import com.exam.asc.domain.model.Item;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -32,7 +35,7 @@ public class SincronizarPedidosClienteServiceTest {
                 new CriteriosBusqueda(null, null, null, null)))
                 .thenReturn(List.of(new PedidoConItems(
                         "id",
-                        "user-123",
+                        "user123",
                         "online",
                         "10/10/2026",
                         "Liv",
@@ -42,18 +45,18 @@ public class SincronizarPedidosClienteServiceTest {
                                 "pantalon"
                         )))));
 
-        when(clienteRepoMock.buscarPorId("user-123"))
+        when(clienteRepoMock.buscarPorId("user123"))
                 .thenReturn(Optional.of(clienteDePrueba()));
 
         SincronizarPedidosClienteService service =
                 new SincronizarPedidosClienteService(buscarPedidosMock, clienteRepoMock);
 
-        service.sincronizar("user-123");
+        service.sincronizar("user123");
 
         verify(clienteRepoMock).actualizar(argThat(cliente ->
                 cliente.ordenes().contains(new PedidoConItems(
                         "id",
-                        "user-123",
+                        "user123",
                         "online",
                         "10/10/2026",
                         "Liv",
@@ -68,16 +71,17 @@ public class SincronizarPedidosClienteServiceTest {
 
     }
 
+
     Cliente clienteDePrueba() {
         return new Cliente(
-                "user-123",
+                "user123",
                 "Juan",
                 "Perez",
                 "Lopez",
                 "correo@correo",
                 "calle",
                 new ArrayList<>(List.of(
-                        new Pedido(
+                        new PedidoConItems(
                                 "id",
                                 "id",
                                 "online",

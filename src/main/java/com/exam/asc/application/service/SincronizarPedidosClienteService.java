@@ -4,16 +4,15 @@ import com.exam.asc.application.port.in.BuscarPedidosUseCase;
 import com.exam.asc.application.port.in.CriteriosBusqueda;
 import com.exam.asc.application.port.in.SincronizarPedidosClienteUseCase;
 import com.exam.asc.application.port.out.ClienteRepositoryPort;
-import com.exam.asc.application.port.out.PedidosApiPort;
-import com.exam.asc.domain.model.Cliente;
-import com.exam.asc.domain.model.Pedido;
+import com.exam.asc.application.port.out.exception.ApiExternaNoDisponibleException;
 import com.exam.asc.domain.model.PedidoConItems;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@Slf4j
 public class SincronizarPedidosClienteService implements SincronizarPedidosClienteUseCase {
 
     private final BuscarPedidosUseCase buscarPedidos;
@@ -26,21 +25,22 @@ public class SincronizarPedidosClienteService implements SincronizarPedidosClien
     }
 
     public void sincronizar(String userId) {
+        List<PedidoConItems> pedidos;
+        try{
+            pedidos = buscarPedidos.buscarPedidosFiltrados(
+                    new CriteriosBusqueda(null, null, null, null))
+                    .stream()
+                    .filter(pedido -> pedido.userId().equals(userId))
+                    .toList();;
 
-        List<PedidoConItems> pedidos = buscarPedidos.buscarPedidosFiltrados(new CriteriosBusqueda(null, null, null, null));
+        } catch (ApiExternaNoDisponibleException ex) {
+            log.warn("No se pudo sincronizar pedidos del cliente {}: {}", userId, ex.getMessage());
+            return;
+        }
 
-        // Filtrar pedidos por userId
-        List<PedidoConItems> pedidosUsuario = pedidos.stream()
-                .filter(pedido -> pedido.userId().equals(userId))
-                .toList();
-
-        // Busca al cliente por userId para actualizarlo
-        Optional<Cliente> cliente = clienteRepository.buscarPorId(userId);
-
-        // Actualiza campo `orders`
-        cliente.ifPresent(c -> {
+        clienteRepository.buscarPorId(userId).ifPresent(c -> {
             c.ordenes().clear();
-            c.ordenes().addAll(pedidosUsuario);
+            c.ordenes().addAll(pedidos);
             clienteRepository.actualizar(c);
         });
     }

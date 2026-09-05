@@ -1,7 +1,7 @@
 package com.exam.asc.infrastructure.adapter.out.http.pedido;
 
+import com.exam.asc.application.port.out.exception.PedidosApiNoDisponibleException;
 import com.exam.asc.domain.model.Pedido;
-import com.exam.asc.infrastructure.adapter.out.http.pedido.exception.PedidosApiNoDisponibleException;
 import mockwebserver3.MockResponse;
 import mockwebserver3.MockWebServer;
 import okhttp3.Headers;

@@ -6,7 +6,9 @@ import com.exam.asc.application.service.BuscarPedidosService;
 import com.exam.asc.domain.service.PedidoItemConciliador;
 import com.exam.asc.domain.service.ToleranciaTextoService;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class DomainServiceConfig {
 
     @Bean

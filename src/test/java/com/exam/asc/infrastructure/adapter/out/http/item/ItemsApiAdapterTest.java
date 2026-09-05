@@ -1,9 +1,7 @@
 package com.exam.asc.infrastructure.adapter.out.http.item;
 
+import com.exam.asc.application.port.out.exception.ItemsApiNoDisponibleException;
 import com.exam.asc.domain.model.Item;
-import com.exam.asc.domain.model.Item;
-import com.exam.asc.infrastructure.adapter.out.http.item.ItemsApiAdapter;
-import com.exam.asc.infrastructure.adapter.out.http.item.exception.ItemsApiNoDisponibleException;
 import mockwebserver3.MockResponse;
 import mockwebserver3.MockWebServer;
 import okhttp3.Headers;

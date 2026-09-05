@@ -6,6 +6,7 @@ import com.exam.asc.application.service.ClienteService;
 import com.exam.asc.domain.model.Cliente;
 import com.exam.asc.domain.model.Item;
 import com.exam.asc.domain.model.Pedido;
+import com.exam.asc.domain.model.PedidoConItems;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -31,7 +32,7 @@ public class ClienteServiceTest {
                 "Lopez",
                 "correo@correo",
                 "calle",
-                List.of(new Pedido(
+                List.of(new PedidoConItems(
                         "id",
                         "id",
                         "online",
@@ -60,7 +61,7 @@ public class ClienteServiceTest {
                 "Lopez",
                 "correo@correo",
                 "calle",
-                List.of(new Pedido(
+                List.of(new PedidoConItems(
                         "id",
                         "id",
                         "online",
@@ -79,5 +80,7 @@ public class ClienteServiceTest {
 
         assertEquals("Juan", resultado.<Object>map(Cliente::nombre).orElse(null));
     }
+
+
 
 }
