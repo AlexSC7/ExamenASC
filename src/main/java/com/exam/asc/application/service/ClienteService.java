@@ -23,9 +23,10 @@ public class ClienteService implements ActualizarClienteUseCase, ConsultarClient
     }
 
     @Override
-    public void actualizarCliente(Cliente cliente) {
-        clienteRepository.actualizar(cliente);
+    public Cliente actualizarCliente(Cliente cliente) {
+        Cliente actualizado = clienteRepository.actualizar(cliente);
         sincronizarPedidos.sincronizar(cliente.userId());
+        return actualizado;
     }
 
     @Override

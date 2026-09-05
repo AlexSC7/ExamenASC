@@ -10,5 +10,5 @@ public interface ClienteRepositoryPort {
 
     Cliente guardar(Cliente cliente);
 
-    void actualizar(Cliente cliente);
+    Cliente actualizar(Cliente cliente);
 }
