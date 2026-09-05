@@ -4,7 +4,7 @@ Servicio de consulta, creación y actualización para clientes, con información
 #### Iniciar proyecto ####
 
 Conectarse a la base de datos mongo de atlas con la siguiente cadena de conexión
-mongodb+srv://alexzsphone_db_user:RghSMsj6zv14XsmZ@cluster0.r0r7x8m.mongodb.net/?appName=Cluster0
+mongodb+srv://vistaBase:tZtn0aDyBenIiG4r@cluster0.r0r7x8m.mongodb.net/?appName=Cluster0
 
 El proyecto esta creado con arquitectura hexagonal
 
