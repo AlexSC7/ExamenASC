@@ -1,4 +1,4 @@
-package com.exam.asc.model;
+package com.exam.asc.domain.model;
 
 import com.exam.asc.domain.model.Cliente;
 import com.exam.asc.domain.model.Item;

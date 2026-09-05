@@ -41,7 +41,7 @@ public class PedidosApiAdapter implements PedidosApiPort {
                 dto.canal(),
                 dto.orderStatus(),
                 dto.storeName(),
-                List.of()
+                dto.items()
         );
     }
 }

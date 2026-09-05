@@ -4,7 +4,7 @@ import com.exam.asc.domain.model.Item;
 
 import java.util.List;
 
-public interface ItemApiPort {
+public interface ItemsApiPort {
 
     List<Item> obtenerItems();
 }

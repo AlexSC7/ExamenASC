@@ -1,19 +1,16 @@
 package com.exam.asc.infrastructure.adapter.out.http.item;
 
-import com.exam.asc.application.port.out.ItemApiPort;
-import com.exam.asc.application.port.out.PedidosApiPort;
+import com.exam.asc.application.port.out.ItemsApiPort;
 import com.exam.asc.domain.model.Item;
-import com.exam.asc.domain.model.Pedido;
 import com.exam.asc.infrastructure.adapter.out.http.item.dto.ItemApiResponse;
 import com.exam.asc.infrastructure.adapter.out.http.item.exception.ItemsApiNoDisponibleException;
-import com.exam.asc.infrastructure.adapter.out.http.pedido.dto.PedidoApiResponse;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
-public class ItemsApiAdapter implements ItemApiPort {
+public class ItemsApiAdapter implements ItemsApiPort {
 
     private final RestClient itemsRestClient;
 

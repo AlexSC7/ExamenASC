@@ -8,7 +8,7 @@ public record Pedido(
         String canal,
         String fechaEstimadaEntrega,
         String storeName,
-        List<Item> items
+        List<String> items
 ) {
 
     public Pedido {

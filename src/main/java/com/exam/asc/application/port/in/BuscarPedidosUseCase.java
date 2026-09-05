@@ -1,10 +1,11 @@
 package com.exam.asc.application.port.in;
 
 import com.exam.asc.domain.model.Pedido;
+import com.exam.asc.domain.model.PedidoConItems;
 
 import java.util.List;
 
 public interface BuscarPedidosUseCase {
 
-    List<Pedido> buscarPedidosFiltrados(String orderRef, String orderStatus, String storeName, String displayName);
+    List<PedidoConItems> buscarPedidosFiltrados(CriteriosBusqueda criterios);
 }
